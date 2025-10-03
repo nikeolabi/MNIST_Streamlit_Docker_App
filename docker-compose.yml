@@ -1,0 +1,34 @@
+version: '3.8'
+networks:
+  sync-network:
+
+volumes:
+  postgres_data:
+
+services:
+  database:
+    image: postgres:15
+    container_name: mnistStreamlitDatabase
+    networks:
+      - sync-network
+    environment:
+      POSTGRES_DB: mnist_db
+      POSTGRES_USER: nike_test
+      POSTGRES_PASSWORD: test
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: ./frontend_streamlit
+      dockerfile: app/Dockerfile
+    container_name: mnistStreamlitApp
+    networks:
+      - sync-network
+    ports:
+      - "8501:8501"
+    depends_on:
+      - database
+

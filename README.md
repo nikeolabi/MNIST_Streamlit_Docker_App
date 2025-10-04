@@ -63,12 +63,12 @@ MNIST_Streamlit_Docker_App/
 
 ---
 
-## 🧠 About the Model
+## 🧠 About the Models
 
-The model is trained on the famous MNIST dataset, which contains 70,000 images of handwritten digits. The model achieves high recognition accuracy through:
+The models are trained on the famous MNIST dataset, which contains 70,000 images of handwritten digits. The models achieves high recognition accuracy through:
 
 - Image preprocessing (centering, normalization)
-- Using Random Forest algorithm
+- Using different ML algorithms
 - Hyperparameter optimization
 
 ---
@@ -215,6 +215,18 @@ CREATE TABLE IF NOT EXISTS user_predictions (
 - DB: `postgres`
 - User: `postgres`
 - Password: `test`
+
+---
+
+## 🎨 Usage
+
+1. Open the application in your browser
+2. Adjust drawing parameters in the sidebar (optional)
+3. Draw a digit from 0 to 9 on the canvas
+4. View the recognition result and model confidence level
+5. Examine the probability histogram for all digits
+6. Click "garbage bean" for a new drawing
+7. Click Report section to load the report
 
 ---
 

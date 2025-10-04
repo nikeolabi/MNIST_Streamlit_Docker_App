@@ -1,4 +1,4 @@
-# 🧠 Handwritten Digit Recognition — Streamlit + FastAPI + Postgres (Dockerized)
+# 🧠 Handwritten Digit Recognition — Streamlit + Postgres (Dockerized)
 
 Interactive web app for recognizing handwritten digits (0–9) using machine learning models trained on the **MNIST dataset**. The MNIST (Modified National Institute of Standards and Technology) database contains 70,000 images of handwritten digits and is a benchmark dataset for training image classification algorithms.
 
@@ -85,7 +85,7 @@ The models are trained on the famous MNIST dataset, which contains 70,000 images
 
 ---
 
-## 📦 Installation (Local, no Docker)
+##  Installation (Local, no Docker)
 
 1. **Clone the repo**
 ```sh
@@ -189,6 +189,17 @@ CREATE TABLE IF NOT EXISTS user_predictions (
 ---
 
 ## 🐳 Run with Docker (Recommended)
+
+### 🚀 Quick Start
+
+```sh
+docker pull nikola452/mnist_streamlit_docker_container_app:latest
+docker run -p 8501:8501 nikola452/mnist_streamlit_docker_container_app:latest
+```
+
+Access at: **http://localhost:8501**
+
+### 🏗️ Full Development Setup
 
 1. **Build & start all services**
 ```sh

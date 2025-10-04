@@ -75,47 +75,49 @@ The model is trained on the famous MNIST dataset, which contains 70,000 images o
 
 ## 📦 Installation (Local, no Docker)
 
-1) **Clone repo**
+1. **Clone the repo**
 ```sh
 git clone <your-repo-url>
 cd MNIST_Streamlit_Docker_App
 ```
 
-2) **Create & activate venv**
-``sh
+2. **Create & activate venv**
+```sh
 python -m venv .venv
-# Windows:
+#### Windows:
 .\.venv\Scripts\Activate
-# macOS/Linux:
+#### macOS/Linux:
 source .venv/bin/activate
 ```
 
-3) **Install deps**
+3. **Install deps**
 ```sh
 pip install -r app/requirements.txt
 ```
 
-4) OPTIONAL:
+4. **OPTIONAL:**
 ```sh
 # ensure project root is importable (either of the two works)
 set PYTHONPATH=%CD%            # Windows CMD
 # $env:PYTHONPATH="$PWD"       # PowerShell
 # export PYTHONPATH="$PWD"     # macOS/Linux
-
-5) **Run Streamlit**
-```sh
- streamlit run app/Docker_Streamlit_app.py
 ```
+
+5. **Run Streamlit**
+```sh
+streamlit run app/Docker_Streamlit_app.py
+```
+
 The app will open at **http://localhost:8501**.
 
 ---
 **Optional: Start Postgres locally and set your DB connection variables if you want to log predictions.**
-### 1) Install PostgreSQL
+### 1. Install PostgreSQL
 - The app is specifically designed for PostgreSQL
 - Download and install from the official site: <https://www.postgresql.org/download/>.
 - During installation, set your database username and password (e.g., user: `postgres`, password: `test`).
 
-### 2) Start the PostgreSQL server
+### 2. Start the PostgreSQL server
 - **Windows:** use pgAdmin or start the PostgreSQL service from Services.
 - **macOS/Linux:**
   ```sh
@@ -124,7 +126,7 @@ The app will open at **http://localhost:8501**.
   sudo systemctl start postgresql
   ```
 
-### 3) Create the database and table
+### 3. Create the database
 ---
 Create (or use) the default database:
 ```sql
@@ -133,17 +135,22 @@ CREATE DATABASE postgres;
 ---
 
 If you run your app locally, you can set environment variables before starting Streamlit:
-Windows (PowerShell):
+
+**Windows (PowerShell):**
+```powershell
 $env:POSTGRES_HOST="your_host"
 $env:POSTGRES_DB="your_database"
 $env:POSTGRES_USER="your_username"
 $env:POSTGRES_PASSWORD="your_password"
+```
 
-macOS/Linux:
+**macOS/Linux:**
+```bash
 export POSTGRES_HOST=your_host
 export POSTGRES_DB=your_database
 export POSTGRES_USER=your_username
 export POSTGRES_PASSWORD=your_password
+```
 
 The default DB environment variables are:
 - **POSTGRES_HOST**: `localhost`
@@ -151,7 +158,7 @@ The default DB environment variables are:
 - **POSTGRES_USER**: `postgres`
 - **POSTGRES_PASSWORD**: `test`
 
-Create the table:
+### 4. Create the table
 ```sql
 CREATE TABLE IF NOT EXISTS user_predictions (
   id SERIAL PRIMARY KEY,
@@ -171,19 +178,37 @@ CREATE TABLE IF NOT EXISTS user_predictions (
 
 ## 🐳 Run with Docker (Recommended)
 
-1) **Build & start all services**
+1. **Build & start all services**
 ```sh
 docker compose up --build
 ```
 
-2) **Open the app**
+2. **Open the app**
 - Streamlit: http://localhost:8501  
 - Postgres: port **5432**
 - Or in DockerDesktop
 
-3) **Connect to the DB:
+3. **Connect to the DB:**
 ```sh
 docker exec -it mnistStreamlitDatabase psql -U postgres -d postgres
+```
+and 
+
+4. **Create the table:**
+
+```sh 
+CREATE TABLE IF NOT EXISTS user_predictions (
+  id SERIAL PRIMARY KEY,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  model_name VARCHAR(64),
+  drawn_digit INTEGER,
+  predicted_digit INTEGER,
+  probability FLOAT,
+  probabilities TEXT,
+  correct BOOLEAN,
+  background_color VARCHAR(16),
+  pen_color VARCHAR(16)
+);
 ```
 
 **Default DB creds**:

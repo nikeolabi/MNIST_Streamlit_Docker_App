@@ -2,8 +2,9 @@ FROM python:3.11
 
 WORKDIR /app
 
-COPY app/ /app
-COPY backend_db_api/ /backend_db_api
+# Copy files from the correct paths (relative to root directory)
+COPY app/ /app/
+COPY backend_db_api/ /backend_db_api/
 COPY SavedModels/ /SavedModels/
 COPY requirements.txt /app/requirements.txt
 

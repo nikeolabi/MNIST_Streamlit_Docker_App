@@ -36,7 +36,7 @@ import psycopg2
 # These can be overridden by environment variables when deploying with Docker. or Streamlit.
 conn_params = {
     "host": os.environ.get("POSTGRES_HOST", "localhost"),
-    "database": os.environ.get("POSTGRES_DB", "postgres"),
+    "database": os.environ.get("POSTGRES_DB", "postgres"), 
     "user": os.environ.get("POSTGRES_USER", "postgres"),
     "password": os.environ.get("POSTGRES_PASSWORD", "test")
 }
